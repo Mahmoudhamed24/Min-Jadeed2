@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة من جديد - الصفحة الرئيسية</title>
+    <!-- استيراد ملفات CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- استيراد Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- الرأس الثابت -->
+    <header class="header">
+        <div class="header-container">
+            <!-- أيقونة القائمة الجانبية -->
+            <div class="hamburger-menu" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <!-- شعار المنصة -->
+            <a href="index.html" class="logo">
+                <img src="img/logo.svg" alt="شعار من جديد">
+                <span>من جديد</span>
+            </a>
+            
+            <!-- زر اختيار الفئات -->
+            <div class="category-selector">
+                <button class="btn btn-outline btn-sm" id="category-btn">
+                    <span id="selected-categories-count">جميع الفئات</span>
+                    <i class="fas fa-filter"></i>
+                </button>
+                <!-- قائمة الفئات المنسدلة (تظهر عند النقر) -->
+                <div class="dropdown-menu" id="categories-dropdown">
+                    <div class="p-sm">
+                        <div class="form-group">
+                            <label class="form-label">اختر الفئات</label>
+                            <div class="categories-list">
+                                <div class="form-check">
+                                    <input type="checkbox" id="cat-1" class="category-checkbox" value="حكمة">
+                                    <label for="cat-1">حكمة</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="cat-2" class="category-checkbox" value="تحفيز">
+                                    <label for="cat-2">تحفيز</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="cat-3" class="category-checkbox" value="علم">
+                                    <label for="cat-3">علم</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="cat-4" class="category-checkbox" value="أدب">
+                                    <label for="cat-4">أدب</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="cat-5" class="category-checkbox" value="فلسفة">
+                                    <label for="cat-5">فلسفة</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full" id="apply-filter">تطبيق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <!-- حالة عدم تسجيل الدخول -->
+            <div id="guest-menu" class="fade-in">
+                <div class="text-center mb-lg">
+                    <p class="mb-sm">مرحباً بك في منصة من جديد</p>
+                    <p class="font-sm text-medium mb-md">سجل دخولك للمشاركة في المنصة</p>
+                    <div class="flex flex-column gap-sm">
+                        <a href="pages/login.html" class="btn btn-primary w-full">تسجيل الدخول</a>
+                        <a href="pages/signup.html" class="btn btn-outline w-full">إنشاء حساب</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- حالة تسجيل الدخول (مخفية افتراضياً) -->
+            <div id="user-menu" class="hidden">
+                <div class="user-info mb-lg">
+                    <div class="flex items-center gap-sm mb-sm">
+                        <img src="img/placeholders/avatar.jpg" alt="الصورة الشخصية" class="avatar-sm">
+                        <div>
+                            <p class="font-semibold" id="user-name">مرحباً، <span id="username">اسم المستخدم</span></p>
+                            <p class="font-xs text-medium" id="user-email">user@example.com</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="index.html" class="sidebar-link active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="pages/profile.html" class="sidebar-link"><i class="fas fa-user"></i> الملف الشخصي</a></li>
+                        <li><a href="pages/new-post.html" class="sidebar-link"><i class="fas fa-plus-circle"></i> إضافة اقتباس</a></li>
+                        <li><a href="#" class="sidebar-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <div class="container">
+            <!-- علامات التبويب -->
+            <div class="tabs" id="content-tabs">
+                <div class="tab active" data-tab="newest">الأحدث</div>
+                <div class="tab" data-tab="top-rated">الأعلى تقييماً</div>
+            </div>
+            
+            <!-- شبكة البطاقات -->
+            <div class="cards-grid" id="quotes-container">
+                <!-- ستتم إضافة البطاقات ديناميكياً عبر JavaScript -->
+                <!-- نموذج لبطاقة اقتباس (سيتم استنساخها) -->
+                <div class="quote-card" id="quote-template" style="display: none;">
+                    <div class="quote-card-header">
+                        <img src="" alt="" class="quote-card-avatar">
+                        <div>
+                            <div class="quote-card-author"></div>
+                            <div class="category-badge"></div>
+                        </div>
+                    </div>
+                    <div class="quote-card-content">
+                        <h3 class="quote-card-title"></h3>
+                        <p class="quote-card-text"></p>
+                    </div>
+                    <div class="quote-card-footer">
+                        <div class="rating">
+                            <div class="rating-stars">
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                                <i class="fas fa-star rating-star"></i>
+                            </div>
+                            <span class="rating-value"></span>
+                        </div>
+                        <div class="quote-actions">
+                            <button class="btn btn-sm btn-outline edit-quote hidden"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-accent delete-quote hidden"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- مؤشر التحميل -->
+            <div class="text-center p-lg" id="loading-indicator">
+                <div class="loading loading-lg"></div>
+                <p class="mt-sm">جاري تحميل الاقتباسات...</p>
+            </div>
+            
+            <!-- زر تحميل المزيد -->
+            <div class="text-center mt-lg mb-xl">
+                <button class="btn btn-outline" id="load-more">تحميل المزيد</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- النافذة المنبثقة لتفاصيل الاقتباس -->
+    <div class="overlay hidden" id="quote-detail-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">تفاصيل الاقتباس</h3>
+                <span class="modal-close" id="close-quote-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="quote-detail-content">
+                    <!-- سيتم ملء المحتوى ديناميكياً -->
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="comments-section">
+                    <h4>التعليقات</h4>
+                    <div class="comments-list">
+                        <!-- سيتم ملء التعليقات ديناميكياً -->
+                    </div>
+                    
+                    <div class="add-comment mt-md">
+                        <h5>أضف تعليقاً</h5>
+                        <div class="form-group">
+                            <textarea class="form-textarea" id="comment-text" placeholder="اكتب تعليقك هنا..."></textarea>
+                        </div>
+                        <button class="btn btn-primary" id="submit-comment">إرسال</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- النافذة المنبثقة للإشعارات -->
+    <div class="notification-container" id="notification-container">
+        <!-- سيتم إضافة الإشعارات ديناميكياً -->
+    </div>
+
+    <!-- استيراد ملفات JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
