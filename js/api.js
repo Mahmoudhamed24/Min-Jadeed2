@@ -9,6 +9,7 @@
 const API = (function() {
     // المتغيرات الخاصة
     const API_URL = 'https://script.google.com/macros/s/AKfycbzvF0Ya3T-KZpwa5-qAbC9symwGtVSYOTCY3stru9N0fudNgJQ5h4XRL7-q5nfQHXCV7w/exec';
+    const USER_KEY = 'min_jadeed_user';
     
     /**
      * إرسال طلب إلى الخادم
@@ -45,19 +46,24 @@ const API = (function() {
                 options.body = JSON.stringify(data);
             }
             
+            console.log(`Sending ${method} request to ${url}`, data);
+            
             // إرسال الطلب
             const response = await fetch(url, options);
             
             // التحقق من نجاح الطلب
             if (!response.ok) {
+                console.error(`HTTP Error: ${response.status} ${response.statusText}`);
                 throw new Error(`خطأ في الطلب: ${response.status} ${response.statusText}`);
             }
             
             // تحليل الاستجابة
             const result = await response.json();
+            console.log('API Response:', result);
             
             // التحقق من وجود خطأ في الاستجابة
             if (result.error) {
+                console.error('API Error:', result.error);
                 throw new Error(result.error);
             }
             
@@ -71,6 +77,40 @@ const API = (function() {
         }
     }
     
+    /**
+     * حفظ بيانات المستخدم في التخزين المحلي
+     * @param {Object} user - بيانات المستخدم
+     */
+    function saveUser(user) {
+        if (user) {
+            localStorage.setItem(USER_KEY, JSON.stringify(user));
+        }
+    }
+    
+    /**
+     * الحصول على بيانات المستخدم من التخزين المحلي
+     * @returns {Object|null} - بيانات المستخدم أو null إذا لم يكن مسجل الدخول
+     */
+    function getCurrentUser() {
+        const userJson = localStorage.getItem(USER_KEY);
+        return userJson ? JSON.parse(userJson) : null;
+    }
+    
+    /**
+     * التحقق مما إذا كان المستخدم مسجل الدخول
+     * @returns {boolean} - صحيح إذا كان المستخدم مسجل الدخول
+     */
+    function isLoggedIn() {
+        return !!getCurrentUser();
+    }
+    
+    /**
+     * تسجيل خروج المستخدم
+     */
+    function logout() {
+        localStorage.removeItem(USER_KEY);
+    }
+    
     // وظائف المستخدمين
     
     /**
@@ -80,7 +120,19 @@ const API = (function() {
      * @returns {Promise} - وعد ببيانات المستخدم
      */
     async function login(email, password) {
-        return sendRequest('login', { email, password }, 'POST');
+        try {
+            const response = await sendRequest('login', { email, password }, 'POST');
+            
+            if (response.success && response.user) {
+                saveUser(response.user);
+                return response;
+            } else {
+                throw new Error('استجابة غير صالحة من الخادم');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            throw error;
+        }
     }
     
     /**
@@ -89,7 +141,19 @@ const API = (function() {
      * @returns {Promise} - وعد ببيانات المستخدم الجديد
      */
     async function signup(userData) {
-        return sendRequest('signup', userData, 'POST');
+        try {
+            const response = await sendRequest('signup', userData, 'POST');
+            
+            if (response.success && response.user) {
+                saveUser(response.user);
+                return response;
+            } else {
+                throw new Error('استجابة غير صالحة من الخادم');
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            throw error;
+        }
     }
     
     /**
@@ -107,7 +171,16 @@ const API = (function() {
      * @returns {Promise} - وعد ببيانات المستخدم المحدثة
      */
     async function updateUser(userData) {
-        return sendRequest('user', userData, 'PUT');
+        const response = await sendRequest('user', userData, 'PUT');
+        
+        if (response.success && response.user) {
+            const currentUser = getCurrentUser();
+            if (currentUser && currentUser.email === userData.userEmail) {
+                saveUser(response.user);
+            }
+        }
+        
+        return response;
     }
     
     // وظائف الاقتباسات
@@ -239,6 +312,9 @@ const API = (function() {
         signup,
         getUser,
         updateUser,
+        getCurrentUser,
+        isLoggedIn,
+        logout,
         
         // وظائف الاقتباسات
         getQuotes,
@@ -259,3 +335,6 @@ const API = (function() {
         deleteComment
     };
 })();
+
+// تصدير كائن API للاستخدام في الملفات الأخرى
+window.API = API;
