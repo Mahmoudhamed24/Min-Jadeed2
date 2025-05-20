@@ -1,0 +1,182 @@
+<!--
+* signup.html - صفحة إنشاء حساب جديد لمنصة Min Jadeed
+*
+* هذه الصفحة تتيح للمستخدمين إنشاء حساب جديد في المنصة
+* تحتوي على نموذج التسجيل مع حقول الاسم الكامل واسم المستخدم والبريد الإلكتروني وكلمة المرور
+-->
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد - منصة من جديد</title>
+    <!-- استيراد ملفات CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- استيراد Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- الرأس الثابت -->
+    <header class="header">
+        <div class="header-container">
+            <!-- شعار المنصة -->
+            <a href="../index.html" class="logo">
+                <img src="../img/logo.svg" alt="شعار من جديد">
+                <span>من جديد</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <div class="container">
+            <div class="form-layout">
+                <div class="text-center mb-lg">
+                    <h1 class="mb-sm">إنشاء حساب جديد</h1>
+                    <p class="text-medium">انضم إلى منصة من جديد وشارك اقتباساتك المفضلة</p>
+                </div>
+                
+                <!-- نموذج إنشاء حساب -->
+                <form id="signup-form">
+                    <!-- حقل الاسم الكامل -->
+                    <div class="form-group">
+                        <label for="fullname" class="form-label">الاسم الكامل</label>
+                        <input type="text" id="fullname" class="form-input" placeholder="أدخل اسمك الكامل" required>
+                        <div class="form-error" id="fullname-error"></div>
+                    </div>
+                    
+                    <!-- حقل اسم المستخدم -->
+                    <div class="form-group">
+                        <label for="username" class="form-label">اسم المستخدم</label>
+                        <input type="text" id="username" class="form-input" placeholder="أدخل اسم المستخدم" required>
+                        <div class="form-error" id="username-error"></div>
+                    </div>
+                    
+                    <!-- حقل البريد الإلكتروني -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" id="email" class="form-input" placeholder="أدخل بريدك الإلكتروني" required>
+                        <div class="form-error" id="email-error"></div>
+                    </div>
+                    
+                    <!-- حقل كلمة المرور -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">كلمة المرور</label>
+                        <div class="password-input-container">
+                            <input type="password" id="password" class="form-input" placeholder="أدخل كلمة المرور" required>
+                            <button type="button" class="password-toggle" id="password-toggle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="form-error" id="password-error"></div>
+                    </div>
+                    
+                    <!-- حقل تأكيد كلمة المرور -->
+                    <div class="form-group">
+                        <label for="confirm-password" class="form-label">تأكيد كلمة المرور</label>
+                        <div class="password-input-container">
+                            <input type="password" id="confirm-password" class="form-input" placeholder="أعد إدخال كلمة المرور" required>
+                            <button type="button" class="password-toggle" id="confirm-password-toggle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="form-error" id="confirm-password-error"></div>
+                    </div>
+                    
+                    <!-- الفئات المفضلة -->
+                    <div class="form-group">
+                        <label class="form-label">الفئات المفضلة (اختياري)</label>
+                        <div class="categories-grid">
+                            <div class="form-check">
+                                <input type="checkbox" id="fav-cat-1" class="favorite-category" value="حكمة">
+                                <label for="fav-cat-1">حكمة</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="fav-cat-2" class="favorite-category" value="تحفيز">
+                                <label for="fav-cat-2">تحفيز</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="fav-cat-3" class="favorite-category" value="علم">
+                                <label for="fav-cat-3">علم</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="fav-cat-4" class="favorite-category" value="أدب">
+                                <label for="fav-cat-4">أدب</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="fav-cat-5" class="favorite-category" value="فلسفة">
+                                <label for="fav-cat-5">فلسفة</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- الموافقة على الشروط والأحكام -->
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" id="terms-agreement" required>
+                            <label for="terms-agreement">أوافق على <a href="#" id="terms-link">الشروط والأحكام</a></label>
+                        </div>
+                        <div class="form-error" id="terms-error"></div>
+                    </div>
+                    
+                    <!-- رسالة الخطأ العامة -->
+                    <div class="form-error text-center mb-md" id="signup-error"></div>
+                    
+                    <!-- زر إنشاء الحساب -->
+                    <button type="submit" class="btn btn-primary w-full">إنشاء حساب</button>
+                </form>
+                
+                <!-- رابط تسجيل الدخول -->
+                <div class="text-center mt-lg">
+                    <p>
+                        لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- النافذة المنبثقة للشروط والأحكام -->
+    <div class="overlay hidden" id="terms-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">الشروط والأحكام</h3>
+                <span class="modal-close" id="close-terms-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="terms-content">
+                    <h4>شروط استخدام منصة من جديد</h4>
+                    <p>مرحباً بك في منصة من جديد. باستخدامك للمنصة، فإنك توافق على الالتزام بالشروط والأحكام التالية:</p>
+                    
+                    <h5>1. قواعد المحتوى</h5>
+                    <p>يجب أن يكون المحتوى المنشور ملائماً ولا يحتوي على أي مواد مسيئة أو غير قانونية.</p>
+                    
+                    <h5>2. حقوق الملكية الفكرية</h5>
+                    <p>يجب احترام حقوق الملكية الفكرية للآخرين عند نشر الاقتباسات، مع ذكر المصدر عند الاقتباس.</p>
+                    
+                    <h5>3. الخصوصية</h5>
+                    <p>نحن نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية وفقاً لسياسة الخصوصية الخاصة بنا.</p>
+                    
+                    <h5>4. إلغاء الحساب</h5>
+                    <p>يمكنك إلغاء حسابك في أي وقت من خلال صفحة الملف الشخصي.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="accept-terms">موافق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- النافذة المنبثقة للإشعارات -->
+    <div class="notification-container" id="notification-container">
+        <!-- سيتم إضافة الإشعارات ديناميكياً -->
+    </div>
+
+    <!-- استيراد ملفات JavaScript -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/ui.js"></script>
+</body>
+</html>

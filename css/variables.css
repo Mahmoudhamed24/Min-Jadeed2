@@ -1,0 +1,96 @@
+/* 
+* variables.css - ملف متغيرات CSS لمنصة Min Jadeed
+* 
+* هذا الملف يحتوي على جميع المتغيرات المستخدمة في تصميم المنصة مثل الألوان والخطوط والظلال
+* استخدام المتغيرات يسهل تغيير مظهر الموقع بالكامل من مكان واحد
+*/
+
+:root {
+  /* الألوان الأساسية */
+  --primary-color: #3498db;       /* اللون الأساسي للمنصة - أزرق */
+  --primary-dark: #2980b9;        /* نسخة داكنة من اللون الأساسي */
+  --primary-light: #e3f2fd;       /* نسخة فاتحة من اللون الأساسي */
+  
+  --secondary-color: #2ecc71;     /* اللون الثانوي - أخضر */
+  --secondary-dark: #27ae60;      /* نسخة داكنة من اللون الثانوي */
+  --secondary-light: #e8f5e9;     /* نسخة فاتحة من اللون الثانوي */
+  
+  --accent-color: #e74c3c;        /* لون التأكيد - أحمر */
+  --accent-dark: #c0392b;         /* نسخة داكنة من لون التأكيد */
+  
+  /* ألوان محايدة */
+  --text-dark: #2c3e50;           /* لون النص الداكن */
+  --text-medium: #7f8c8d;         /* لون النص المتوسط */
+  --text-light: #bdc3c7;          /* لون النص الفاتح */
+  
+  --bg-dark: #34495e;             /* لون الخلفية الداكنة */
+  --bg-light: #f5f5f5;            /* لون الخلفية الفاتحة */
+  --bg-white: #ffffff;            /* لون الخلفية البيضاء */
+  
+  /* ألوان الحالة */
+  --success: #2ecc71;             /* لون النجاح */
+  --warning: #f39c12;             /* لون التحذير */
+  --error: #e74c3c;               /* لون الخطأ */
+  --info: #3498db;                /* لون المعلومات */
+  
+  /* الخطوط */
+  --font-primary: 'Cairo', 'Tajawal', sans-serif;  /* الخط الأساسي */
+  --font-secondary: 'Almarai', sans-serif;         /* الخط الثانوي */
+  --font-size-xs: 0.75rem;        /* 12px */
+  --font-size-sm: 0.875rem;       /* 14px */
+  --font-size-md: 1rem;           /* 16px */
+  --font-size-lg: 1.125rem;       /* 18px */
+  --font-size-xl: 1.25rem;        /* 20px */
+  --font-size-2xl: 1.5rem;        /* 24px */
+  --font-size-3xl: 1.875rem;      /* 30px */
+  --font-size-4xl: 2.25rem;       /* 36px */
+  
+  /* المسافات */
+  --spacing-xs: 0.25rem;          /* 4px */
+  --spacing-sm: 0.5rem;           /* 8px */
+  --spacing-md: 1rem;             /* 16px */
+  --spacing-lg: 1.5rem;           /* 24px */
+  --spacing-xl: 2rem;             /* 32px */
+  --spacing-2xl: 3rem;            /* 48px */
+  
+  /* الحدود */
+  --border-radius-sm: 0.25rem;    /* 4px */
+  --border-radius-md: 0.5rem;     /* 8px */
+  --border-radius-lg: 1rem;       /* 16px */
+  --border-radius-full: 9999px;   /* دائري */
+  
+  /* الظلال */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  
+  /* التحولات */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+  
+  /* الطبقات (z-index) */
+  --z-below: -1;
+  --z-normal: 1;
+  --z-above: 10;
+  --z-modal: 100;
+  --z-overlay: 1000;
+  --z-tooltip: 2000;
+  
+  /* أبعاد الواجهة */
+  --header-height: 4rem;          /* ارتفاع الرأس الثابت */
+  --sidebar-width: 280px;         /* عرض القائمة الجانبية */
+  --container-max-width: 1200px;  /* الحد الأقصى لعرض المحتوى */
+}
+
+/* وسائط الاستعلام للأجهزة المختلفة */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 3.5rem;
+    --sidebar-width: 250px;
+    --font-size-4xl: 2rem;
+    --font-size-3xl: 1.75rem;
+    --spacing-2xl: 2.5rem;
+  }
+}

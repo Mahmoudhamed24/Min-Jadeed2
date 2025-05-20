@@ -1,0 +1,142 @@
+<!--
+* new-post.html - صفحة إضافة اقتباس جديد لمنصة Min Jadeed
+*
+* هذه الصفحة تتيح للمستخدمين إضافة اقتباسات جديدة إلى المنصة
+* تحتوي على نموذج لإدخال عنوان الاقتباس والفئة والنص مع معاينة مباشرة
+-->
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة اقتباس جديد - منصة من جديد</title>
+    <!-- استيراد ملفات CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- استيراد Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- الرأس الثابت -->
+    <header class="header">
+        <div class="header-container">
+            <!-- أيقونة القائمة الجانبية -->
+            <div class="hamburger-menu" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <!-- شعار المنصة -->
+            <a href="../index.html" class="logo">
+                <img src="../img/logo.svg" alt="شعار من جديد">
+                <span>من جديد</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <!-- حالة تسجيل الدخول -->
+            <div id="user-menu">
+                <div class="user-info mb-lg">
+                    <div class="flex items-center gap-sm mb-sm">
+                        <img src="../img/placeholders/avatar.jpg" alt="الصورة الشخصية" class="avatar-sm">
+                        <div>
+                            <p class="font-semibold" id="user-name">مرحباً، <span id="username">اسم المستخدم</span></p>
+                            <p class="font-xs text-medium" id="user-email">user@example.com</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="../index.html" class="sidebar-link"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="profile.html" class="sidebar-link"><i class="fas fa-user"></i> الملف الشخصي</a></li>
+                        <li><a href="new-post.html" class="sidebar-link active"><i class="fas fa-plus-circle"></i> إضافة اقتباس</a></li>
+                        <li><a href="#" class="sidebar-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="text-center mb-lg">إضافة اقتباس جديد</h1>
+            
+            <div class="new-post-layout">
+                <!-- نموذج إضافة اقتباس -->
+                <div class="form-layout">
+                    <form id="new-post-form">
+                        <!-- حقل العنوان -->
+                        <div class="form-group">
+                            <label for="post-title" class="form-label">العنوان</label>
+                            <input type="text" id="post-title" class="form-input" placeholder="أدخل عنوان الاقتباس" required>
+                            <div class="form-error" id="title-error"></div>
+                        </div>
+                        
+                        <!-- حقل الفئة -->
+                        <div class="form-group">
+                            <label for="post-category" class="form-label">الفئة</label>
+                            <select id="post-category" class="form-select" required>
+                                <option value="" disabled selected>اختر الفئة</option>
+                                <option value="حكمة">حكمة</option>
+                                <option value="تحفيز">تحفيز</option>
+                                <option value="علم">علم</option>
+                                <option value="أدب">أدب</option>
+                                <option value="فلسفة">فلسفة</option>
+                            </select>
+                            <div class="form-error" id="category-error"></div>
+                        </div>
+                        
+                        <!-- حقل نص الاقتباس -->
+                        <div class="form-group">
+                            <label for="post-text" class="form-label">نص الاقتباس</label>
+                            <textarea id="post-text" class="form-textarea" placeholder="أدخل نص الاقتباس هنا..." required></textarea>
+                            <div class="form-error" id="text-error"></div>
+                            <p class="font-xs text-medium mt-xs">يمكنك إضافة روابط بكتابة عنوان URL مباشرة في النص.</p>
+                        </div>
+                        
+                        <!-- رسالة الخطأ العامة -->
+                        <div class="form-error text-center mb-md" id="post-error"></div>
+                        
+                        <!-- أزرار الإرسال والإلغاء -->
+                        <div class="flex gap-md">
+                            <button type="submit" class="btn btn-primary flex-1">
+                                <i class="fas fa-paper-plane"></i> نشر
+                            </button>
+                            <a href="../index.html" class="btn btn-outline flex-1">
+                                <i class="fas fa-times"></i> إلغاء
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- لوحة المعاينة المباشرة -->
+                <div class="preview-panel">
+                    <h3 class="mb-md">معاينة مباشرة</h3>
+                    <div class="preview-container card">
+                        <h4 id="preview-title" class="mb-sm">عنوان الاقتباس</h4>
+                        <div class="category-badge mb-md" id="preview-category">الفئة</div>
+                        <p id="preview-text" class="mb-md">نص الاقتباس سيظهر هنا مع تحويل الروابط إلى روابط قابلة للنقر.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- النافذة المنبثقة للإشعارات -->
+    <div class="notification-container" id="notification-container">
+        <!-- سيتم إضافة الإشعارات ديناميكياً -->
+    </div>
+
+    <!-- استيراد ملفات JavaScript -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/quotes.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!--
+* quote-detail.html - صفحة تفاصيل الاقتباس لمنصة Min Jadeed
+*
+* هذه الصفحة تعرض تفاصيل اقتباس محدد مع التعليقات والتقييمات
+* تتيح للمستخدمين إضافة تعليقات وتقييم الاقتباس ومشاهدة اقتباسات مشابهة
+-->
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الاقتباس - منصة من جديد</title>
+    <!-- استيراد ملفات CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- استيراد Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- الرأس الثابت -->
+    <header class="header">
+        <div class="header-container">
+            <!-- أيقونة القائمة الجانبية -->
+            <div class="hamburger-menu" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <!-- شعار المنصة -->
+            <a href="../index.html" class="logo">
+                <img src="../img/logo.svg" alt="شعار من جديد">
+                <span>من جديد</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <!-- حالة عدم تسجيل الدخول -->
+            <div id="guest-menu" class="fade-in">
+                <div class="text-center mb-lg">
+                    <p class="mb-sm">مرحباً بك في منصة من جديد</p>
+                    <p class="font-sm text-medium mb-md">سجل دخولك للمشاركة في المنصة</p>
+                    <div class="flex flex-column gap-sm">
+                        <a href="login.html" class="btn btn-primary w-full">تسجيل الدخول</a>
+                        <a href="signup.html" class="btn btn-outline w-full">إنشاء حساب</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- حالة تسجيل الدخول (مخفية افتراضياً) -->
+            <div id="user-menu" class="hidden">
+                <div class="user-info mb-lg">
+                    <div class="flex items-center gap-sm mb-sm">
+                        <img src="../img/placeholders/avatar.jpg" alt="الصورة الشخصية" class="avatar-sm">
+                        <div>
+                            <p class="font-semibold" id="user-name">مرحباً، <span id="username">اسم المستخدم</span></p>
+                            <p class="font-xs text-medium" id="user-email">user@example.com</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="../index.html" class="sidebar-link"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="profile.html" class="sidebar-link"><i class="fas fa-user"></i> الملف الشخصي</a></li>
+                        <li><a href="new-post.html" class="sidebar-link"><i class="fas fa-plus-circle"></i> إضافة اقتباس</a></li>
+                        <li><a href="#" class="sidebar-link" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <div class="container">
+            <div class="detail-layout">
+                <!-- القسم الرئيسي للاقتباس -->
+                <div class="quote-detail-main">
+                    <!-- بطاقة تفاصيل الاقتباس -->
+                    <div class="card mb-lg">
+                        <div class="quote-detail-header mb-md">
+                            <div class="flex items-center gap-md">
+                                <img src="../img/placeholders/avatar.jpg" alt="صورة المؤلف" class="avatar-sm" id="author-avatar">
+                                <div>
+                                    <h3 id="author-name">اسم المؤلف</h3>
+                                    <div class="category-badge" id="quote-category">الفئة</div>
+                                </div>
+                            </div>
+                            <div class="quote-actions hidden" id="quote-actions">
+                                <button class="btn btn-sm btn-outline" id="edit-quote-btn">
+                                    <i class="fas fa-edit"></i> تعديل
+                                </button>
+                                <button class="btn btn-sm btn-accent" id="delete-quote-btn">
+                                    <i class="fas fa-trash"></i> حذف
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <h1 id="quote-title" class="mb-md">عنوان الاقتباس</h1>
+                        
+                        <div class="quote-detail-content mb-lg">
+                            <p id="quote-text" class="mb-md">نص الاقتباس سيظهر هنا...</p>
+                        </div>
+                        
+                        <div class="quote-detail-footer">
+                            <div class="rating-container">
+                                <h4 class="mb-sm">التقييم</h4>
+                                <div class="rating">
+                                    <div class="rating-stars interactive" id="rating-stars">
+                                        <i class="fas fa-star rating-star" data-value="1"></i>
+                                        <i class="fas fa-star rating-star" data-value="2"></i>
+                                        <i class="fas fa-star rating-star" data-value="3"></i>
+                                        <i class="fas fa-star rating-star" data-value="4"></i>
+                                        <i class="fas fa-star rating-star" data-value="5"></i>
+                                    </div>
+                                    <span class="rating-value" id="rating-value">0.0</span>
+                                    <span class="rating-count" id="rating-count">(0 تقييم)</span>
+                                </div>
+                            </div>
+                            <div class="quote-meta">
+                                <span class="text-medium" id="quote-date">تاريخ النشر: 01/01/2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- قسم التعليقات -->
+                    <div class="card">
+                        <h3 class="mb-lg">التعليقات</h3>
+                        
+                        <!-- قائمة التعليقات -->
+                        <div class="comments-list mb-lg" id="comments-container">
+                            <!-- سيتم إضافة التعليقات ديناميكياً -->
+                            <!-- نموذج للتعليق (سيتم استنساخه) -->
+                            <div class="comment" id="comment-template" style="display: none;">
+                                <img src="../img/placeholders/avatar.jpg" alt="صورة المعلق" class="comment-avatar">
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author"></span>
+                                        <span class="comment-date"></span>
+                                    </div>
+                                    <p class="comment-text"></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- رسالة عدم وجود تعليقات -->
+                        <div class="no-comments-message text-center p-md mb-lg" id="no-comments-message">
+                            <i class="fas fa-comments text-light mb-sm font-xl"></i>
+                            <p>لا توجد تعليقات حتى الآن. كن أول من يعلق!</p>
+                        </div>
+                        
+                        <!-- نموذج إضافة تعليق -->
+                        <div class="add-comment-form" id="add-comment-form">
+                            <h4 class="mb-sm">أضف تعليقاً</h4>
+                            <div class="form-group">
+                                <textarea id="comment-text" class="form-textarea" placeholder="اكتب تعليقك هنا..." rows="3"></textarea>
+                                <div class="form-error" id="comment-error"></div>
+                            </div>
+                            <button class="btn btn-primary" id="submit-comment">
+                                <i class="fas fa-paper-plane"></i> إرسال
+                            </button>
+                        </div>
+                        
+                        <!-- رسالة تسجيل الدخول للتعليق -->
+                        <div class="login-to-comment text-center p-md hidden" id="login-to-comment">
+                            <p class="mb-sm">يجب تسجيل الدخول لإضافة تعليق</p>
+                            <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- القسم الجانبي للاقتباسات المشابهة -->
+                <div class="quote-detail-sidebar">
+                    <div class="card">
+                        <h3 class="mb-md">اقتباسات مشابهة</h3>
+                        
+                        <!-- قائمة الاقتباسات المشابهة -->
+                        <div class="related-quotes" id="related-quotes-container">
+                            <!-- سيتم إضافة الاقتباسات المشابهة ديناميكياً -->
+                            <!-- نموذج للاقتباس المشابه (سيتم استنساخه) -->
+                            <div class="related-quote-item" id="related-quote-template" style="display: none;">
+                                <h4 class="related-quote-title"></h4>
+                                <div class="category-badge mb-sm"></div>
+                                <p class="related-quote-text"></p>
+                                <div class="flex justify-between items-center mt-sm">
+                                    <span class="related-quote-author"></span>
+                                    <div class="rating">
+                                        <i class="fas fa-star filled"></i>
+                                        <span class="rating-value"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- رسالة عدم وجود اقتباسات مشابهة -->
+                        <div class="no-related-quotes text-center p-md hidden" id="no-related-quotes-message">
+                            <i class="fas fa-quote-right text-light mb-sm font-xl"></i>
+                            <p>لا توجد اقتباسات مشابهة حالياً.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- النافذة المنبثقة لتعديل الاقتباس -->
+    <div class="overlay hidden" id="edit-quote-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">تعديل الاقتباس</h3>
+                <span class="modal-close" id="close-edit-quote-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="edit-quote-form">
+                    <!-- حقل العنوان -->
+                    <div class="form-group">
+                        <label for="edit-quote-title" class="form-label">العنوان</label>
+                        <input type="text" id="edit-quote-title" class="form-input" placeholder="أدخل عنوان الاقتباس" required>
+                        <div class="form-error" id="edit-title-error"></div>
+                    </div>
+                    
+                    <!-- حقل الفئة -->
+                    <div class="form-group">
+                        <label for="edit-quote-category" class="form-label">الفئة</label>
+                        <select id="edit-quote-category" class="form-select" required>
+                            <option value="" disabled>اختر الفئة</option>
+                            <option value="حكمة">حكمة</option>
+                            <option value="تحفيز">تحفيز</option>
+                            <option value="علم">علم</option>
+                            <option value="أدب">أدب</option>
+                            <option value="فلسفة">فلسفة</option>
+                        </select>
+                        <div class="form-error" id="edit-category-error"></div>
+                    </div>
+                    
+                    <!-- حقل نص الاقتباس -->
+                    <div class="form-group">
+                        <label for="edit-quote-text" class="form-label">نص الاقتباس</label>
+                        <textarea id="edit-quote-text" class="form-textarea" placeholder="أدخل نص الاقتباس هنا..." required></textarea>
+                        <div class="form-error" id="edit-text-error"></div>
+                    </div>
+                    
+                    <!-- رسالة الخطأ العامة -->
+                    <div class="form-error text-center mb-md" id="edit-quote-error"></div>
+                    
+                    <!-- زر حفظ التغييرات -->
+                    <button type="submit" class="btn btn-primary w-full">حفظ التغييرات</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- النافذة المنبثقة لتأكيد الحذف -->
+    <div class="overlay hidden" id="delete-confirmation-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">تأكيد الحذف</h3>
+                <span class="modal-close" id="close-delete-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>هل أنت متأكد من رغبتك في حذف هذا الاقتباس؟</p>
+                <p class="text-medium">لا يمكن التراجع عن هذا الإجراء.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancel-delete">إلغاء</button>
+                <button class="btn btn-accent" id="confirm-delete">تأكيد الحذف</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- النافذة المنبثقة للإشعارات -->
+    <div class="notification-container" id="notification-container">
+        <!-- سيتم إضافة الإشعارات ديناميكياً -->
+    </div>
+
+    <!-- استيراد ملفات JavaScript -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/quotes.js"></script>
+</body>
+</html>

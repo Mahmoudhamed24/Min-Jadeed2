@@ -1,0 +1,121 @@
+<!--
+* login.html - صفحة تسجيل الدخول لمنصة Min Jadeed
+*
+* هذه الصفحة تتيح للمستخدمين تسجيل الدخول إلى المنصة باستخدام البريد الإلكتروني وكلمة المرور
+* تحتوي على نموذج تسجيل الدخول وروابط لإنشاء حساب جديد أو استعادة كلمة المرور المنسية
+-->
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - منصة من جديد</title>
+    <!-- استيراد ملفات CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- استيراد Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- الرأس الثابت -->
+    <header class="header">
+        <div class="header-container">
+            <!-- شعار المنصة -->
+            <a href="../index.html" class="logo">
+                <img src="../img/logo.svg" alt="شعار من جديد">
+                <span>من جديد</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <div class="container">
+            <div class="form-layout">
+                <div class="text-center mb-lg">
+                    <h1 class="mb-sm">تسجيل الدخول</h1>
+                    <p class="text-medium">أهلاً بعودتك! سجل دخولك للمتابعة</p>
+                </div>
+                
+                <!-- نموذج تسجيل الدخول -->
+                <form id="login-form">
+                    <!-- حقل البريد الإلكتروني -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" id="email" class="form-input" placeholder="أدخل بريدك الإلكتروني" required>
+                        <div class="form-error" id="email-error"></div>
+                    </div>
+                    
+                    <!-- حقل كلمة المرور -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">كلمة المرور</label>
+                        <div class="password-input-container">
+                            <input type="password" id="password" class="form-input" placeholder="أدخل كلمة المرور" required>
+                            <button type="button" class="password-toggle" id="password-toggle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="form-error" id="password-error"></div>
+                    </div>
+                    
+                    <!-- خيار تذكرني -->
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" id="remember-me">
+                            <label for="remember-me">تذكرني</label>
+                        </div>
+                    </div>
+                    
+                    <!-- رسالة الخطأ العامة -->
+                    <div class="form-error text-center mb-md" id="login-error"></div>
+                    
+                    <!-- زر تسجيل الدخول -->
+                    <button type="submit" class="btn btn-primary w-full">تسجيل الدخول</button>
+                </form>
+                
+                <!-- روابط إضافية -->
+                <div class="text-center mt-lg">
+                    <p class="mb-sm">
+                        <a href="#" id="forgot-password">نسيت كلمة المرور؟</a>
+                    </p>
+                    <p>
+                        ليس لديك حساب؟ <a href="signup.html">إنشاء حساب جديد</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- النافذة المنبثقة لاستعادة كلمة المرور -->
+    <div class="overlay hidden" id="forgot-password-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">استعادة كلمة المرور</h3>
+                <span class="modal-close" id="close-forgot-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p class="mb-md">أدخل بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.</p>
+                <form id="forgot-password-form">
+                    <div class="form-group">
+                        <label for="recovery-email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" id="recovery-email" class="form-input" placeholder="أدخل بريدك الإلكتروني" required>
+                        <div class="form-error" id="recovery-email-error"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">إرسال رابط الاستعادة</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- النافذة المنبثقة للإشعارات -->
+    <div class="notification-container" id="notification-container">
+        <!-- سيتم إضافة الإشعارات ديناميكياً -->
+    </div>
+
+    <!-- استيراد ملفات JavaScript -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/ui.js"></script>
+</body>
+</html>
